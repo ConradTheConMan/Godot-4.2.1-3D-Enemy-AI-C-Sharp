@@ -5,3 +5,4 @@ If you wish to use this ensure your enemy matches the scheme as seen in enemy1.p
 You must also have a player character with a Camera3D as a child.
 Also ensure that the Area3Ds and timer have been linked to the enemy.
 It is unlikely I will check pull requests or bug reports for a long time. This is just meant to work for now, not be perfect.
+If you have suggestions or feedback, please leave it in discussions.
