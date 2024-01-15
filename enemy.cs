@@ -102,6 +102,7 @@ public partial class enemy : CharacterBody3D
 				GD.Print("Hunting");
 				break;
 				case States.Attacking:
+    				LookAt(player.GlobalPosition);
 				GD.Print("Attacking");
 				break;
 			case States.Waiting:
