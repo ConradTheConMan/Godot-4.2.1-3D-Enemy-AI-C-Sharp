@@ -74,7 +74,7 @@ public partial class enemy : CharacterBody3D
 			case States.Patrol:
 				if (NavigationAgent.IsNavigationFinished())
 				{
-					GD.Print("Done patrolling");
+					GD.Print("Finished patrolling");
 					patrolTimer.Start();
 					CurrentState = States.Waiting;
 					return;
@@ -89,7 +89,6 @@ public partial class enemy : CharacterBody3D
 					return;
 				}
 				Velocity = MoveTowardsPoint(currentAgentPosition, nextPathPosition) * chaseSpeed;
-				GD.Print("Chasing");
 				break;
 			case States.Hunting:
 				if (NavigationAgent.IsNavigationFinished())
@@ -99,11 +98,9 @@ public partial class enemy : CharacterBody3D
 					return;
 				}
 				Velocity = MoveTowardsPoint(currentAgentPosition, nextPathPosition) * huntingSpeed;
-				GD.Print("Hunting");
 				break;
 				case States.Attacking:
-    				LookAt(player.GlobalPosition);
-				GD.Print("Attacking");
+					LookAt(player.GlobalPosition);
 				break;
 			case States.Waiting:
 				GD.Print("waiting");
@@ -202,6 +199,7 @@ public partial class enemy : CharacterBody3D
 		if (body == player)
 		{
 		playerInCloseSound = true;
+		GD.Print("Chasing");
 		}
 	}
 
@@ -209,8 +207,8 @@ public partial class enemy : CharacterBody3D
 		{
 			if (body == player)
 			{
+			GD.Print("Stopped Chasing");
 			playerInCloseSound = false;
-			GD.Print("Player exited close hearing");
 			}
 		}
 
@@ -219,6 +217,7 @@ public partial class enemy : CharacterBody3D
 		if (body == player)
 		{
 		playerInFarSound = true;
+		GD.Print("Hunting");
 		}
 	}
 
@@ -226,8 +225,8 @@ public partial class enemy : CharacterBody3D
 		{
 			if (body == player)
 			{
+			GD.Print("Stopped Hunting");
 			playerInFarSound = false;
-			GD.Print("Player exited far hearing");
 			}
 		}
 
@@ -235,6 +234,7 @@ public partial class enemy : CharacterBody3D
 	{
 		if (body == player)
 		{
+		GD.Print("Chasing");
 		playerInCloseSight = true;
 		}
 	}
@@ -243,8 +243,8 @@ public partial class enemy : CharacterBody3D
 		{
 			if (body == player)
 			{
+			GD.Print("Stopped Chasing");
 			playerInCloseSight = false;
-			GD.Print("Player exited close sight");
 			}
 		}
 
@@ -253,6 +253,7 @@ public partial class enemy : CharacterBody3D
 		if (body == player)
 		{
 		playerInFarSight = true;
+		GD.Print("Hunting");
 		}
 	}
 
@@ -260,14 +261,15 @@ public partial class enemy : CharacterBody3D
 		{
 			if (body == player)
 			{
+			GD.Print("Stopped Hunting");
 			playerInFarSight = false;
-			GD.Print("Player exited far sight");
 			}
 		}
 	private void _on_attack_radius_body_entered(Node3D body)
 	{
 		if (body == player)
 		{
+		GD.Print("Attacking");
 		playerInAttackRange = true;
 		}
 	}
@@ -277,9 +279,11 @@ public partial class enemy : CharacterBody3D
 		{
 			if (body == player)
 			{
+				GD.Print("Stopped Attacking");
 				playerInAttackRange = false;
 				CurrentState = States.Chasing;
 			}
 		}
 }
+
 
